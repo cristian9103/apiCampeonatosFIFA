@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import apicampeonatosfifa.apicampeonatosfifa.dominio.GrupoPais;
 
 @Repository
-public interface IGrupoPaisRepositorio extends JpaRepository<GrupoPais, Integer> {
+public interface IGrupoPaisRepositorio extends JpaRepository<GrupoPais, GrupoPaisId> {
 
 }

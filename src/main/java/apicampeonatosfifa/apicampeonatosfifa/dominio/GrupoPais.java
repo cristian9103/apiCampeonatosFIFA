@@ -1,12 +1,15 @@
 package apicampeonatosfifa.apicampeonatosfifa.dominio;
 
+import apicampeonatosfifa.apicampeonatosfifa.core.interfaces.repositorios.GrupoPaisId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
+@IdClass(GrupoPaisId.class)
 @Table(name = "grupopais")
 public class GrupoPais {
     @Id
