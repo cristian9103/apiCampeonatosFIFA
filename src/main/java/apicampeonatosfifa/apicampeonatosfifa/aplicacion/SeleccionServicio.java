@@ -13,7 +13,7 @@ public class SeleccionServicio implements ISeleccionServicio {
 
     private ISeleccionRepositorio repositorio;
 
-    public SeleccionServicio(ISeleccionRepositorio repositorio){
+    public SeleccionServicio(ISeleccionRepositorio repositorio) {
         this.repositorio = repositorio;
     }
 
@@ -24,8 +24,7 @@ public class SeleccionServicio implements ISeleccionServicio {
 
     @Override
     public Seleccion obtener(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtener'");
+        return repositorio.findById(id).isPresent() ? repositorio.findById(id).get() : null;
     }
 
     @Override
@@ -36,20 +35,26 @@ public class SeleccionServicio implements ISeleccionServicio {
 
     @Override
     public Seleccion agregar(Seleccion pais) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'agregar'");
+        pais.setId(0);
+        return repositorio.save(pais);
     }
 
     @Override
     public Seleccion modificar(Seleccion pais) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modificar'");
+        return repositorio.findById(pais.getId()).isPresent() ? repositorio.save(pais) : null;
     }
 
     @Override
     public boolean eliminar(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
+        if (repositorio.findById(id).isPresent()) {
+            try {
+                repositorio.deleteById(id);
+                return true;
+            } catch (Exception ex) {
+            }
+        }
+
+        return false;
     }
 
 }
